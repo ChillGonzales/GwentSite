@@ -1,1 +1,1 @@
-GwentSite
+SkeletonApp

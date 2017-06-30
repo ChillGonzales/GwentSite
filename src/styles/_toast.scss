@@ -1,0 +1,26 @@
+/*
+* Css referenced from https://www.w3schools.com/howto/howto_js_snackbar.asp
+*/
+
+/* The toast - position it at the top and in the middle of the screen */
+.toast {
+    width: 50%; 
+    left: 25%; /* Center */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 2000; /* Add a z-index if needed */
+    top:4em;
+    /* Add animation: Take 0.5 seconds to fade in and out the toast. 
+    However, delay the fade out process for 2.5 seconds */
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the toast in and out */
+@keyframes fadein {
+    from {opacity: 0;}
+    to { opacity: 1;}
+}
+
+@keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}

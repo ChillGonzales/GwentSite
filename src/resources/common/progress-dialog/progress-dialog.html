@@ -1,0 +1,20 @@
+<template>
+  <require from="./progress-dialog"></require>
+  <ai-dialog>
+    <ai-dialog-body>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h4 class="text-center">${model.message}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="progress">
+              <div css="width: ${model.value}%" class="progress-bar ${model.type | progressType} ${model.striped ? 'progress-bar-striped' : ''} ${model.animated ? 'progress-bar-animated' : ''}"></div>
+            </div>
+          </div>
+        </div>
+    </ai-dialog-body>
+  </ai-dialog>
+</template>

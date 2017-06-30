@@ -1,0 +1,31 @@
+.progress-dialog {
+  padding: 1em 2em 1em 2em;
+}
+
+.progress {
+   // padding: 1em 2em 1em 2em;
+  .progress-bar.indeterminate {
+    position: relative;
+    animation: progress-indeterminate 3s linear infinite;
+  }
+}
+
+@keyframes progress-indeterminate {
+  0%  {
+    left: -50%; width: 25%; 
+  }
+  25%  {
+    left: 0%; width: 25%; 
+  }
+  50%  {
+    left: 50%; width: 40%; 
+  }
+  100% {  
+    left: 120%; width: 40%;
+  }
+}
+
+ai-dialog-overlay.active {
+  background-color: black;
+  opacity: .5;
+}

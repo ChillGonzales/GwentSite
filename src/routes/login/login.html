@@ -1,0 +1,21 @@
+<template>
+  <div class="jumbotron">
+    <h2>Login</h2>
+    <h5>Enter your Active Directory or GAP username and password.</h5>
+  </div>
+  <div class="container">
+    <form submit.delegate="submit()">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 form-group">
+          <input id="usernameInput" type="text" tabindex="1" class="form-control" value.bind="username" placeholder="Username" autofocus/>
+          <input id="passwordIdInput" type="password" tabindex="2" class="form-control" value.bind="password" placeholder="Password" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3">
+          <button type="submit" class="btn btn-primary btn-block" style="margin-top:1em">Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</template>

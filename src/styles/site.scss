@@ -1,0 +1,47 @@
+@import 'colors';
+@import 'progress';
+@import 'slider';
+@import 'toast';
+
+/*
+ * General
+ */
+ .shadow-1 {
+   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+ }
+
+/*
+ * Jumbotron
+ */
+ .jumbotron {
+   @extend .shadow-1;
+   background-color:white;
+   padding:2em;
+ }
+
+ /*
+ * Button
+ */
+ button {
+   @extend .shadow-1;
+ }
+
+/*
+ * Font Awesome
+ */
+ td.fa {
+  display: table-cell;
+  font-size:1.4em;
+  text-align: center;
+  cursor: pointer;
+ }
+
+ /*
+ * Navigation
+ */
+.navbar-dev {
+      background-color: $dev-color;
+}
+.navbar-qa {
+      background-color: $qa-color;
+}

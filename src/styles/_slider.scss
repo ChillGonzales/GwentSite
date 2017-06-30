@@ -1,0 +1,33 @@
+
+ /*
+ * Slider
+ */
+.noUi-horizontal{
+      height: .5em; /* Remove this if screen needs to be touch friendly */
+
+      /*
+       * The control only allowed the bar to be clickable and clicking the number labels had no effect on the value
+       * The below code will extend the bar, white it out, and thinken the top border.
+       * This gives the appearance of a selection bar while allowing the numbers to be moved on top of the rest of the control
+       * Since the numbers are on top of the control, they are now clickable without additional javascript
+       */
+      height: 3em;
+      background-color: white;
+      box-shadow: none;
+      border:none;
+      border-top: .2em solid $input-color;
+      border-radius: 0;
+}
+
+.noUi-handle:before, .noUi-handle:after {
+      height: .5em; /* Remove this if screen needs to be touch friendly */
+      top: .2em;
+}
+
+.noUi-horizontal .noUi-handle {
+      height: 1em; /* Remove this if screen needs to be touch friendly */
+}
+
+.noUi-pips-horizontal {
+  top:0;
+}
