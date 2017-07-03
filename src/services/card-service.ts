@@ -2,6 +2,7 @@ import { inject } from 'aurelia-framework';
 import { MemoizingFetchClient } from '../resources/common/memoizing-fetch-client';
 import { json } from 'aurelia-fetch-client';
 import { EventAggregator } from 'aurelia-event-aggregator';
+import { HttpException } from '../resources/common/http-exception';
 
 @inject(MemoizingFetchClient, EventAggregator)
 export class CardService{
@@ -17,4 +18,29 @@ export class CardService{
       });
     }
   }
+  private getCardPage(count: number, offset: number) : Promise<PageResponse> {
+    return this.http.fetchCached(this.cardPageEndpoint + "?limit=${ count }" + "&offset=${ offset }")
+      .then<PageResponse>(response => {
+        return response.json();
+      },
+      (response: Response) => {
+        return response.json()
+          .then((ex: HttpException) => {
+            throw new Error(ex.exceptionMessage);
+          });
+      }).then((result: PageResponse) => {
+        if (result) {
+          return result;
+        }
+      });
+  }
+}
+interface BasicInfo{
+  public name: string;
+  public href: string;
+}
+export class PageResponse{
+  public count: number;
+  public nextHref: string;
+  public cards: Array<BasicInfo>;
 }
