@@ -19,7 +19,7 @@ export class CardService{
     }
   }
   public getCardPage(count: number, offset: number) : Promise<PageResponse> {
-    return this.http.fetchCached(this.cardPageEndpoint + "?limit=${ count }" + "&offset=${ offset }")
+    return this.http.fetchCached(this.cardPageEndpoint + "?limit=" + count + "&offset=" + offset )
       .then<PageResponse>(response => {
         return response.json();
       },
@@ -35,12 +35,35 @@ export class CardService{
       });
   }
 }
+
+/*    return this.http.fetchCached('user/' + userId + '?includeGroups=' + includeGroups)
+      .then<Identity>(response => {
+        return response.json();
+      },
+      (response: Response) => {
+        return response.json()
+          .then((ex: HttpException) => {
+            throw new Error(ex.exceptionMessage);
+          });
+      }).then((result: Identity) => {
+        if (result) {
+          let user: User = {
+            emailAddress: result.emailAddress,
+            employeeId: result.employeeId,
+            firstName: result.firstName,
+            lastName: result.lastName,
+            username: result.username,
+            roles: this.mapUserRole(result.roles)
+          };
+          return user;
+        }
+      });*/
 export interface BasicInfo{
   name: string;
-  href: string;
+  href?: string;
 }
 export interface PageResponse{
   count: number;
-  nextHref: string;
-  cards: Array<BasicInfo>;
+  nextHref?: string;
+  cards?: Array<BasicInfo>;
 }
