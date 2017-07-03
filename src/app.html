@@ -3,6 +3,11 @@
   <require from="styles/site.css"></require>
   <nav class="navbar navbar-light bg-faded ${environment.name === 'Dev' ? 'navbar-dev' : environment.name === 'QA' ? 'navbar-qa' : ''}" style="flex-direction: row; justify-content: space-between;">
     <a class="navbar-brand" href="#">Skeleton App ${environment.name === "Prod" ? '' : environment.name}</a>
+    <ul class="navbar-nav">
+      <li class="navbar-item">
+        <a class="nav-link" route-href="route: cards">Cards</a>
+      </li>
+    </ul>
     <template if.bind="!currentUser">
       <ul class="navbar-nav ml-auto">
         <li><a class="nav-link nav-dark-text" route-href="route: login">Login</a></li>

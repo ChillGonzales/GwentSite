@@ -18,7 +18,7 @@ export class CardService{
       });
     }
   }
-  private getCardPage(count: number, offset: number) : Promise<PageResponse> {
+  public getCardPage(count: number, offset: number) : Promise<PageResponse> {
     return this.http.fetchCached(this.cardPageEndpoint + "?limit=${ count }" + "&offset=${ offset }")
       .then<PageResponse>(response => {
         return response.json();
@@ -35,12 +35,12 @@ export class CardService{
       });
   }
 }
-interface BasicInfo{
-  public name: string;
-  public href: string;
+export interface BasicInfo{
+  name: string;
+  href: string;
 }
-export class PageResponse{
-  public count: number;
-  public nextHref: string;
-  public cards: Array<BasicInfo>;
+export interface PageResponse{
+  count: number;
+  nextHref: string;
+  cards: Array<BasicInfo>;
 }
