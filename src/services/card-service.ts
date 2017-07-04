@@ -6,7 +6,7 @@ import { HttpException } from '../resources/common/http-exception';
 
 @inject(MemoizingFetchClient, EventAggregator)
 export class CardService{
-  private cardPageEndpoint: string = 'cards';
+  private cardEndpoint: string = 'cards';
   private variationEndpoint: string = 'variations';
 
   constructor(private http: MemoizingFetchClient, private eventAggregator: EventAggregator) {
@@ -19,7 +19,7 @@ export class CardService{
     }
   }
   public getCardPage(count: number, offset: number) : Promise<PageResponse> {
-    return this.http.fetchCached(this.cardPageEndpoint + "?limit=" + count + "&offset=" + offset )
+    return this.http.fetchCached(this.cardEndpoint + "?limit=" + count + "&offset=" + offset )
       .then<PageResponse>(response => {
         return response.json();
       },
@@ -34,6 +34,8 @@ export class CardService{
         }
       });
   }
+  // private getCardData(cardList: Array<BasicInfo>) : Promise<CardDetail> {
+  // }
 }
 
 export interface BasicInfo{
@@ -45,3 +47,26 @@ export interface PageResponse{
   next: string;
   results: Array<BasicInfo>;
 }
+export interface Artwork{
+  name: string;
+  thumbnailImage: string;
+}
+export interface CardDetail{
+  categories: Array<BasicInfo>;
+  faction: BasicInfo;
+  flavor: string;
+  group: BasicInfo;
+  href: string;
+  info: string;
+  name: string;
+  positions: string[];
+  strength: number;
+  uuid: string;
+  variations: Array<Variations>;
+}
+export interface Variations{
+  href: string;
+  rarity: BasicInfo;
+
+}
+

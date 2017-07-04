@@ -1,5 +1,4 @@
 <template>
-  <require from="./resources/elements/card.html"></require>
   <div class="container">
     <form submit.delegate="getCards()">
       <div class="row">
@@ -8,9 +7,10 @@
         </div>
       </div>
     </form>
-    <template if.bind="cardPage">
+    <template if.bind="cards">
       <ul>
-        <card repeat.for="card of cards" card.bind="card"></card>
+        <!--><card repeat.for="card of cards" card.bind="card"></card><!-->
+        <li repeat.for="card of cards">${ card.name } - ${ card.href }</li>
       </ul>
     </template>
   </div>
