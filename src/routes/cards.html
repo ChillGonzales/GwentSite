@@ -7,11 +7,13 @@
         </div>
       </div>
     </form>
-    <template if.bind="cards">
+    <!--<template if.bind="cards">
       <ul>
-        <!--><card repeat.for="card of cards" card.bind="card"></card><!-->
-        <li repeat.for="card of cards">${ card.name } - ${ card.href }</li>
+        <li repeat.for="card of cards">${ card.name } - ${ card.uuid }</li>
       </ul>
+    </template>-->
+    <template if.bind="cardArt">
+        <div repeat.for="art of cardArt"><a href="#"><img src= "${ art.thumbnailImage }"></a></div>
     </template>
   </div>
 </template>

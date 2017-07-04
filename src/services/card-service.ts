@@ -18,7 +18,7 @@ export class CardService{
       });
     }
   }
-  public getCardPage(count: number, offset: number) : Promise<PageResponse> {
+  public getCardPage(count: number, offset: number) : Promise<Array<CardInfo>> {
     return this.http.fetchCached(this.cardEndpoint + "?limit=" + count + "&offset=" + offset )
       .then<PageResponse>(response => {
         return response.json();
@@ -30,14 +30,49 @@ export class CardService{
           });
       }).then((result: PageResponse) => {
         if (result) {
-          return result;
+          let retVal: Array<CardInfo> = [];
+          for (let card of result.results){
+            let splitLink = card.href.split("/");
+            let bi: CardInfo = {
+              name: card.name,
+              uuid: splitLink[splitLink.length - 1]
+            }
+            retVal.push(bi);
+          }
+          return retVal;
         }
       });
+  }
+  public getArtwork(cards: Array<CardInfo>) : Array<Artwork>{
+    let artArray: Artwork[] = [];
+    for (let card of cards){
+      let response = this.http.fetchCached(this.cardEndpoint + "/" + card.uuid + "/" + this.variationEndpoint)
+        .then<VariationDetail[]>(response => {
+          return response.json();
+        },
+        (response: Response) => {
+          return response.json()
+          .then((ex: HttpException) => {
+            throw new Error(ex.exceptionMessage);
+          });
+        }).then((result: VariationDetail[]) => {
+          let art: Artwork = {
+            name: card.name,
+            thumbnailImage: result[0].art.thumbnailImage
+          }
+          artArray.push(art);
+        });
+    }
+    return artArray;
   }
   // private getCardData(cardList: Array<BasicInfo>) : Promise<CardDetail> {
   // }
 }
 
+export interface CardInfo{
+  name: string;
+  uuid: string;
+}
 export interface BasicInfo{
   name: string;
   href: string;
@@ -67,6 +102,21 @@ export interface CardDetail{
 export interface Variations{
   href: string;
   rarity: BasicInfo;
-
+}
+export interface Art{
+  thumbnailImage: string;
+}
+export interface ArtLevel{
+  normal: string;
+  premium: string;
+}
+export interface VariationDetail{
+  art: Art;
+  availability: string;
+  craft: ArtLevel;
+  href: string;
+  mill: ArtLevel;
+  rarity: BasicInfo;
+  uuid: string;
 }
 
