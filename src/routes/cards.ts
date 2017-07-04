@@ -5,8 +5,8 @@ import { Logger, LogOptions, LogType } from '../resources/common/logger';
 import { CardService, PageResponse, BasicInfo } from '../services/card-service';
 
 @inject(CardService, Router, Logger)
-export class GetCards {
-  public cardPage: Array<BasicInfo>;
+export class Cards {
+  private cards: Array<BasicInfo>;
 
   constructor(private cardService: CardService, private router: Router, private logger: Logger) {
   }
@@ -17,7 +17,8 @@ export class GetCards {
         this.logger.error(ex.message, { error: ex });
       })
       .then((result: PageResponse) => {
-        this.cardPage = result.cards;
+        console.log("%O", result);
+        this.cards = result.results;
       })
   }
 }
