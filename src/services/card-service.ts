@@ -58,15 +58,14 @@ export class CardService{
         }).then((result: VariationDetail[]) => {
           let art: Artwork = {
             name: card.name,
-            thumbnailImage: result[0].art.thumbnailImage
+            thumbnailImage: result[0].art.thumbnailImage,
+            uuid: card.uuid
           }
           artArray.push(art);
         });
     }
     return artArray;
   }
-  // private getCardData(cardList: Array<BasicInfo>) : Promise<CardDetail> {
-  // }
 }
 
 export interface CardInfo{
@@ -85,6 +84,7 @@ export interface PageResponse{
 export interface Artwork{
   name: string;
   thumbnailImage: string;
+  uuid: string;
 }
 export interface CardDetail{
   categories: Array<BasicInfo>;

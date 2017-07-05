@@ -13,7 +13,18 @@
       </ul>
     </template>-->
     <template if.bind="cardArt">
-        <div repeat.for="art of cardArt"><a href="#"><img src= "${ art.thumbnailImage }"></a></div>
+        <div class = "row">
+          <div class="col" repeat.for="art of cardArt">
+            <a click.delegate="showOverlay(${ art.uuid })">
+              <img src= "${ art.thumbnailImage }" style="width:250px;height:309px">
+            </a>
+          </div>
+        </div>
+    </template>
+    <template if.bind="overlayOn">
+      <div class= "overlay">
+        <a click.delegate="closeOverlay()"><img src= "${ overlayedCard.thumbnailImage }"></a>
+      </div>
     </template>
   </div>
 </template>
