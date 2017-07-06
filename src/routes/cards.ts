@@ -14,7 +14,7 @@ export class Cards {
   constructor(private cardService: CardService, private router: Router, private logger: Logger) {
   }
 
-  public getCards(): Promise<Array<CardInfo>> {
+  public getCards(): Promise<void> {
     return this.cardService.getCardPage(80, 20)
       .catch((ex: Error) => {
         this.logger.error(ex.message, { error: ex });
