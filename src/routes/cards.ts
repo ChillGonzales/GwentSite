@@ -15,7 +15,7 @@ export class Cards {
   }
 
   public getCards(): Promise<Array<CardInfo>> {
-    return this.cardService.getCardPage(40, 20)
+    return this.cardService.getCardPage(80, 20)
       .catch((ex: Error) => {
         this.logger.error(ex.message, { error: ex });
       })

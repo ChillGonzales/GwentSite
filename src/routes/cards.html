@@ -15,9 +15,9 @@
     <template if.bind="cardArt">
         <div class = "row">
           <div class="col" repeat.for="art of cardArt">
-            <a click.delegate="showOverlay(${ art.uuid })">
+            <!--<a click.delegate="showOverlay(${ art.uuid })">-->
               <img src= "${ art.thumbnailImage }" style="width:250px;height:309px">
-            </a>
+            <!--</a>-->
           </div>
         </div>
     </template>
